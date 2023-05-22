@@ -51,11 +51,11 @@ print(vetor)
 print()
 n = 0
 o = 0
-m = 0
+m = 0       
 i = 0
 for i in range(0, QtdApoios):
     if vetor[m] == 1:
-        Apoio[o]=Fixo 
+        Apoio[o]=Fixo   
     elif vetor[m] == 2:
         Apoio[o] = Movel
     else:
@@ -111,14 +111,27 @@ for i in range(0,QtdForcas):
 print(Forca)
 i=0
 c=0
+j=0
+p=100
 for i in range(0,QtdForcas):
     if Forca[c] == 'Concentrada':
         print()
-        PosForcaC = float(input(f"Onde deseja aplicar a força {TamanhoBarra}: ")) 
-        if PosForcaC >TamanhoBarra or PosForcaC <TamanhoBarra
-        print()
-        print("NUMERO INVALIDO, DIGITE NOVAMENTE!")
-        PosForcaC = float(input(f"Onde deseja aplicar a força {TamanhoBarra}: ")) 
+        PosForcaC = float(input(f"Onde deseja aplicar a força? Tamanho da barra = {TamanhoBarra}m: ")) 
+        if PosForcaC >TamanhoBarra or PosForcaC <0:
+            p=p+1
+            for j in range (0,p):
+                print()
+                print("NUMERO INVALIDO, DIGITE NOVAMENTE!")
+                PosForcaC = float(input(f"Onde deseja aplicar a força? Tamanho da barra = {TamanhoBarra}m: ")) 
+                if PosForcaC <=TamanhoBarra and PosForcaC >=0:
+                    print()
+                    print(f"Força aplicada em {PosForcaC}m")
+                    p=0
+                    break
+                else:
+                    print()
+            else:
+                print()
         
     else:
         print()
@@ -127,3 +140,68 @@ for i in range(0,QtdForcas):
         if PosForcaD > TamanhoBarra:
            PosForcaD = float(input("Digite Novamente: "))
     c=c+1
+
+print(Apoio)
+print()
+IntensidadeF = float(input("Qual é a intensidade da força (N): "))
+o=0
+i=0
+V1=0
+V2=0
+V3=0
+H1=0
+H3=0
+M3=0
+ForcasT = list(range(3))
+ForcasA1 = [V1,H1]
+ForcasA2 = [V2]
+ForcasA3 = [V3,H3,M3]
+
+for i in range(0,QtdApoios): 
+    if Apoio[o] == Fixo:
+        ForcasT[o] = Fixo
+        o=o+1
+    elif Apoio[o] == Movel:
+        ForcasT[o] = Movel
+        o=o+1
+    else:
+        ForcasT[o] = Engaste
+        o=o+1
+
+print()  
+o=0
+SomatoriaX = 0
+SomatoriaY = list(range(3))
+print(ForcasT)
+for i in range(0,3):
+    if ForcasT[o] == Fixo:
+        SomatoriaX = ForcasA1[1]
+        SomatoriaY[o] = ForcasA1[0]
+        o=o+1
+    elif ForcasT[o] == Movel:
+        SomatoriaY[o] = ForcasA2[0]
+        o=o+1
+    else:
+        SomatoriaX = ForcasA3[0]
+        SomatoriaY[o] = ForcasA3[2]
+print(SomatoriaY)
+i=0
+o=0
+vary = list(range(3))
+for i in range(0,3):
+    if SomatoriaY[o] != 0:
+        vary[o] = SomatoriaY[o]
+        o=o+1
+    else:
+        vary[o] = 0
+        o=o+1
+print(vary)
+resultm=0
+H1 = SomatoriaX
+H2 = SomatoriaX
+V2 = (PosForcaC*IntensidadeF)/TamanhoBarra
+V1 = IntensidadeF - V2
+print(f"Ha: {H1} N")
+print(f"Va: {V1} N")
+print(f"Hb: {H2} N")
+print(f"Vb: {V2} N")
