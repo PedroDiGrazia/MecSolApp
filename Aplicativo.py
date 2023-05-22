@@ -16,26 +16,38 @@ Movel = 'Movel'
 Engaste = 'Engaste'
 
 vetor = list(range(QtdApoios))
+for i in range(QtdApoios):
+    vetor[m]=10
+    m=m+1
 Apoio = list(range(QtdApoios))
 print()
 j=0
+p=100
+m=0
+i=0
 for i in range(0, QtdApoios):
     n = n + 1
-    vetor[m] = int(input(f"Digite o numero do Apoio no ponto {n} (1,2,3): "))
-    if vetor[m] <1 and vetor[m] >3: 
-                print()
-                print("NUMERO INVALIDO! DIGITE NOVAMENTE")
-                print()
-    print(QtdApoios)
-    for j in range(0, QtdApoios):
-            vetor[m] = int(input(f"Digite o numero do Apoio no ponto {n} (1,2,3): "))
-            if vetor[m] <1 and vetor[m] >3: 
-                print()
-                print("NUMERO INVALIDO! DIGITE NOVAMENTE")
-                print()
-            m = m + 1
-    m=m+1
     print(vetor)
+    vetor[m] = int(input(f"Digite o numero do Apoio no ponto {n} (1,2,3): "))
+    print(QtdApoios)
+    print(vetor)
+    if vetor[m] <1 or vetor[m] >3: 
+        p=p+1
+        for j in range(0,p):
+            print()
+            print("NUMERO INVALIDO! DIGITE NOVAMENTE")
+            print(vetor)
+            vetor[m] = int(input(f"Digite o numero do Apoio no ponto {n} (1,2,3): "))
+            if vetor[m] >=1 and vetor[m]<=3:
+                print(f"p:{p}")
+                m=m+1
+                break
+            else:
+                print(f"p2:{p}")
+                print()
+    else:
+        m=m+1
+print(vetor)
 print()
 n = 0
 o = 0
@@ -102,7 +114,12 @@ c=0
 for i in range(0,QtdForcas):
     if Forca[c] == 'Concentrada':
         print()
-        PosForcaC = float(input("Onde deseja aplicar a força: ")) 
+        PosForcaC = float(input(f"Onde deseja aplicar a força {TamanhoBarra}: ")) 
+        if PosForcaC >TamanhoBarra or PosForcaC <TamanhoBarra
+        print()
+        print("NUMERO INVALIDO, DIGITE NOVAMENTE!")
+        PosForcaC = float(input(f"Onde deseja aplicar a força {TamanhoBarra}: ")) 
+        
     else:
         print()
         print("Utilize um dos apoios como origem!")
